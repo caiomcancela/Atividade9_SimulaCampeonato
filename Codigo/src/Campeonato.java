@@ -1,22 +1,20 @@
-import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class Campeonato {
     private String nome;
     private Integer premioDinheiro;
-    private ArrayList<Time> times;
+    private ArrayList<TimeEsportivo> times;
 
-    public Campeonato(Time time) {
+    public Campeonato(String nome,TimeEsportivo time) {
+        this.nome = nome;
         times = new ArrayList<>();
-        times.get(time);
+        times.add(time);
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public Integer getPremioDinheiro() {
@@ -27,11 +25,11 @@ public class Campeonato {
         this.premioDinheiro = premioDinheiro;
     }
 
-    public void setTime(Time time) {
+    public void setTime(TimeEsportivo time) {
         times.add(time);
     }
 
-    public void listarTimesParticipantes(){
+    public String listarTimesParticipantes(){
         String adicionar = "";
         for (int i = 0; i < times.size(); i++) {
             adicionar += times.get(i).getNome() + "\n";
@@ -39,5 +37,21 @@ public class Campeonato {
         return adicionar;
     }
 
-    public class
+    public String simularJogos() {
+        Random rand = new Random();
+        ArrayList<Integer> indices = new ArrayList<>();
+        String partidas = "Resultado da Rodada: \n\n";
+
+        for (int i = 0; i < 10; i++) {
+            indices.add(i);
+        }
+
+        Collections.shuffle(indices);
+
+        for (int i = 0; i < times.size(); i+=2) {
+            partidas += times.get(indices.get(i)).getNome() + "(" + rand.nextInt(6) + ") x " +
+                    times.get(indices.get(i+1)).getNome() + "(" + rand.nextInt(6) + ")" + "\n";
+        }
+        return partidas;
+    }
 }
