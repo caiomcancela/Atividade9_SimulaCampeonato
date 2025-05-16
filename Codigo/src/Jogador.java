@@ -2,7 +2,7 @@ public class Jogador {
     private String nome;
     private Integer Idade;
     private String posicao;
-    private TimeFutebol timeAtual;
+    private TimeEsportivo timeAtual;
 
     public Jogador(String nome) {
         this.nome = nome;
@@ -28,7 +28,7 @@ public class Jogador {
         this.posicao = posicao;
     }
 
-    public void adicionarTime(TimeFutebol time){
+    public void adicionarTime(TimeEsportivo time){
         timeAtual = time;
     }
     public  timeQueJogaAtualmente(){
