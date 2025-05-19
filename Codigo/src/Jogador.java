@@ -2,25 +2,32 @@ import java.util.Random;
 
 public class Jogador {
     private String nome;
-    private Integer Idade;
+    private Integer idade;
     private Float salario;
     private String posicao;
     private TimeEsportivo timeAtual;
 
-    public Jogador(String nome) {
-        this.nome = nome;
+    public Jogador() {
+        this.nome = "";
+        this.idade = 0;
+        this.salario = 0.0f;
+        this.posicao = "";
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
     public Integer getIdade() {
-        return Idade;
+        return idade;
     }
 
     public void setIdade(Integer idade) {
-        Idade = idade;
+        this.idade = idade;
     }
 
     public Float getSalario() {
@@ -43,8 +50,12 @@ public class Jogador {
         timeAtual = time;
     }
 
-    public  timeQueJogaAtualmente(){
-        return "O jogador " + this.nome + " pertence ao " + timeAtual.getNome() +"\n";
+
+    public String exibirJogador(){
+        return "Nome: " + this.nome + "\n" +
+                "Idade: " + this.idade + "\n" +
+                "Time atual: " + this.timeAtual.getNome() + "\n" +
+                "Posição: " + this.posicao + "\n";
     }
 
     public String jogarPartida(){
@@ -55,6 +66,6 @@ public class Jogador {
         String tipoDeTreino[] = {"Chute","Defesa","Passe","Drible","Fisico(Academia)","Coletivo(Partida)"};
         Random rand = new Random();
 
-        return "O jogador " + this.nome + " esta treinando " + tipoDeTreino[rand.nextInt(5)] "\n";
+        return "O jogador " + this.nome + " esta treinando " + tipoDeTreino[rand.nextInt(5)] + "\n";
     }
 }
