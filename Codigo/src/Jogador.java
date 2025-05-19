@@ -7,20 +7,16 @@ public class Jogador {
     private String posicao;
     private TimeEsportivo timeAtual;
 
-    public Jogador() {
-        this.nome = "";
-        this.idade = 0;
-        this.salario = 0.0f;
-        this.posicao = "";
+    public Jogador(String nome,TimeEsportivo time) {
+        this.nome = nome;
+        this.timeAtual = time;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome){
-        this.nome = nome;
-    }
+
 
     public Integer getIdade() {
         return idade;
@@ -44,10 +40,6 @@ public class Jogador {
 
     public void setPosicao(String posicao) {
         this.posicao = posicao;
-    }
-
-    public void adicionarTime(TimeEsportivo time){
-        timeAtual = time;
     }
 
 

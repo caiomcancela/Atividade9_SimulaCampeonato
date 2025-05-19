@@ -47,7 +47,6 @@ public class Campeonato {
         }
 
         Collections.shuffle(indices);
-
         for (int i = 0; i < times.size(); i+=2) {
             partidas += times.get(indices.get(i)).getNome() + "(" + rand.nextInt(6) + ") x " +
                     times.get(indices.get(i+1)).getNome() + "(" + rand.nextInt(6) + ")" + "\n";
@@ -57,7 +56,6 @@ public class Campeonato {
 
     public String timeCampeao() {
         Random rand = new Random();
-        TimeEsportivo timeCampeao = times.get(rand.nextInt(times.size());
-        timeCampeao.setTitulos(this.nome);
+        return times.get(rand.nextInt(times.size())).getNome();
     }
 }
