@@ -42,7 +42,7 @@ public class Campeonato {
         ArrayList<Integer> indices = new ArrayList<>();
         String partidas = "Resultado da Rodada: \n\n";
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < times.size(); i++) {
             indices.add(i);
         }
 
@@ -53,5 +53,11 @@ public class Campeonato {
                     times.get(indices.get(i+1)).getNome() + "(" + rand.nextInt(6) + ")" + "\n";
         }
         return partidas;
+    }
+
+    public String timeCampeao() {
+        Random rand = new Random();
+        TimeEsportivo timeCampeao = times.get(rand.nextInt(times.size());
+        timeCampeao.setTitulos(this.nome);
     }
 }
