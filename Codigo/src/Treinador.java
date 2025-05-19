@@ -47,7 +47,9 @@ public class Treinador {
     public void setEstiloDeJogo(String estiloDeJogo) {
         EstiloDeJogo = estiloDeJogo;
     }
-
+    public String treinarTime(){
+        return "treinador " + this.nome + "esta treinando o time " + Time.getNome() + "...\n";
+    }
 
 }
 
