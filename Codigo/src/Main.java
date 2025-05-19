@@ -1,18 +1,35 @@
 public class Main {
     public static void main(String[] args) {
+        // Armazena no máximo 10 times
+        TimeEsportivo[] times = new TimeEsportivo[10];
+        int contadorTimes = 0;
 
-        EntradaSaida.menu();
+        while (true) {
+            int opcao = EntradaSaida.menu();
 
-        int num = EntradaSaida.lerInteiro("Digite um numero");
-        System.out.println(num);
+            switch (opcao) {
+                case 0: // Cadastrar Times
+                    if (contadorTimes < 10) {
+                        TimeEsportivo time = EntradaSaida.cadastrarTime();
+                        times[contadorTimes] = time;
+                        contadorTimes++;
+                    } else {
+                        EntradaSaida.exibirMensagem("Limite de 10 times atingido!");
+                    }
+                    break;
 
-        String nome =  EntradaSaida.lerString("Digite o nome do time:");
-        System.out.println(nome);
+                case 1: // Simular Jogos
+                    EntradaSaida.exibirMensagem("Funcionalidade de simulação ainda não implementada.");
+                    break;
 
-        double valor = EntradaSaida.lerDouble("Digite um valor");
-        System.out.println(valor);
+                case 2: // Sair
+                    EntradaSaida.exibirMensagem("Encerrando o programa...");
+                    System.exit(0);
+                    break;
 
-        String msg = EntradaSaida.exibir("Digite uma mensagem");
-        System.out.println(msg);
+                default:
+                    EntradaSaida.exibirMensagem("Opção inválida.");
+            }
+        }
     }
 }

@@ -18,7 +18,7 @@ public class Treinador {
     }
 
     public String treinarTime(TimeEsportivo time){
-        return "Nome do time: " + time.setNome() +
+        return "Nome do time: " + time.getNome() +
                 "Escalacao:   " + time.listarJogadores() +
                 "Estilo de jogo:" + EstiloDeJogo;
     }
