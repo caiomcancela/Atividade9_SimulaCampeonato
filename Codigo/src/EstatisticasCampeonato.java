@@ -9,7 +9,7 @@ public class EstatisticasCampeonato {
     private ArrayList<Integer> golsSofridos;
     private Integer totalDeRodadas;
 
-    public TabelaCampeonato(Campeonato campeonatoAtual){
+    public EstatisticasCampeonato(Campeonato campeonatoAtual){
         campeonato = new Campeonato();
         this.campeonato = campeonatoAtual;
         for (int i = 0; i < 10; i++) {
