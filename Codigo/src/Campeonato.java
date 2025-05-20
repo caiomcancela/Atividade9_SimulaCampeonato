@@ -72,11 +72,11 @@ public class Campeonato {
             // Aplica a pontuação
             if (golsTime1 > golsTime2) {
                 estatisticas.setVitorias(indiceTime1);
-                estatisticas.setDerotas(indiceTime2);
+                estatisticas.setDerrotas(indiceTime2);
 
             } else if (golsTime1 < golsTime2) {
                 estatisticas.setVitorias(indiceTime2);
-                estatisticas.setDerotas(indiceTime1);
+                estatisticas.setDerrotas(indiceTime1);
             } else {
                 estatisticas.setEmpates(indiceTime1);
                 estatisticas.setEmpates(indiceTime2);
