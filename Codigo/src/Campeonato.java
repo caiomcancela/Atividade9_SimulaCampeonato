@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -5,16 +6,20 @@ import java.util.Random;
 public class Campeonato {
     private String nome;
     private Integer premioDinheiro;
-    private ArrayList<TimeEsportivo> times;
+    public ArrayList<TimeEsportivo> times;
+    private EstatisticasCampeonato estatisticas;
 
-    public Campeonato(String nome,TimeEsportivo time) {
-        this.nome = nome;
+    public Campeonato() {
         times = new ArrayList<>();
-        times.add(time);
+        estatisticas = new EstatisticasCampeonato(this);
     }
 
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Integer getPremioDinheiro() {
@@ -29,7 +34,11 @@ public class Campeonato {
         times.add(time);
     }
 
-    public String listarTimesParticipantes(){
+    public TimeEsportivo getTimesCampeonato(Integer indice){
+        return times.get(indice);
+    }
+
+    public String listarTodosTimesParticipantes(){
         String adicionar = "";
         for (int i = 0; i < times.size(); i++) {
             adicionar += times.get(i).getNome() + "\n";
@@ -37,25 +46,60 @@ public class Campeonato {
         return adicionar;
     }
 
+
     public String simularJogos() {
+        estatisticas.novaRodada();
         Random rand = new Random();
         ArrayList<Integer> indices = new ArrayList<>();
-        String partidas = "Resultado da Rodada: \n\n";
+        String partidas = "Resultado da Rodada "+ estatisticas.getTotalDeRodadas() +":\n\n";
 
         for (int i = 0; i < times.size(); i++) {
             indices.add(i);
         }
 
         Collections.shuffle(indices);
-        for (int i = 0; i < times.size(); i+=2) {
-            partidas += times.get(indices.get(i)).getNome() + "(" + rand.nextInt(6) + ") x " +
-                    times.get(indices.get(i+1)).getNome() + "(" + rand.nextInt(6) + ")" + "\n";
+
+        for (int i = 0; i < indices.size() - 1; i += 2) {
+            int indiceTime1 = indices.get(i);
+            int indiceTime2 = indices.get(i + 1);
+
+            int golsTime1 = rand.nextInt(6);
+            int golsTime2 = rand.nextInt(6);
+
+            partidas += times.get(indiceTime1).getNome() + " (" + golsTime1 + ") x " +
+                    times.get(indiceTime2).getNome() + " (" + golsTime2 + ")\n";
+
+            // Aplica a pontuação
+            if (golsTime1 > golsTime2) {
+                estatisticas.setVitorias(indiceTime1);
+                estatisticas.setDerotas(indiceTime2);
+
+            } else if (golsTime1 < golsTime2) {
+                estatisticas.setVitorias(indiceTime2);
+                estatisticas.setDerotas(indiceTime1);
+            } else {
+                estatisticas.setEmpates(indiceTime1);
+                estatisticas.setEmpates(indiceTime2);
+
+            }
+            estatisticas.setGolsmarcados(indiceTime1,golsTime1);
+            estatisticas.setGolsmarcados(indiceTime2,golsTime2);
+            estatisticas.setGolsSofridos(indiceTime1,golsTime2);
+            estatisticas.setGolsSofridos(indiceTime2,golsTime2);
         }
+
         return partidas;
     }
 
-    public String timeCampeao() {
-        Random rand = new Random();
-        return times.get(rand.nextInt(times.size())).getNome();
+    public String imprimirTabelaCampeonato(){
+        // nessa parte ficara responsavel por terminar a parte de imprimir tabela, os campos saldo de gols sera
+        // com as estatisticas da classe estatisticas.
+
     }
+
+    public String timeCampeao() {
+        return times.get(1).getNome();
+    }
+
+
 }
